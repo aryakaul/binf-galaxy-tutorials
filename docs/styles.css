@@ -1,0 +1,85 @@
+body {
+  font-family: Helvetica, Arial, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #111;
+  background-color: #fdfdfd;
+  -webkit-text-size-adjust: 100%; 
+}
+
+
+#container {
+    width:70%;
+    margin: auto;
+    padding-bottom:40px;
+}
+
+#menu {
+    width: auto;
+    height: auto;
+    float: center;
+    margin-top: 16px;
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+}
+
+#menu ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+    
+#menu #nav li {
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    float:left;
+}
+
+#menu #nav li a {
+    display: block;
+    color: #666;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration:none;
+}
+
+#menu #nav li a:hover:not(.active) {
+    background-color:#ddd; 
+    font-style:italic;
+    color=#000000
+}
+
+#menu #nav li a.active {
+    color:white;
+    background-color:black;
+    font-style:italic;
+}
+
+.site-title {
+    font-size: 37px;
+    line-height: 56px;
+    letter-spacing: -1px;
+    margin-bottom:10px;
+    padding:10px
+} 
+
+
+.tutorial {
+    display: flex;
+    padding:10px;
+}
+
+.tutorial #step-no {
+    padding: 40px;
+}
+
+.tutorial .step-descrip{
+    flex: 1 auto;
+}
+
+.tutorial .step-img{
+    flex: 1 auto;
+}
+

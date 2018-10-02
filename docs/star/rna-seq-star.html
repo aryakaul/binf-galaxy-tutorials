@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset"utf-8">
+        <title>Bioinformatics Education</title>
+        <meta name="description" content="Galaxy based lessons in Bioinformatics"> 
+	    <link rel="stylesheet" href="../styles.css"> 
+    </head>
+    
+    <body>
+        <header class="site-header">
+
+        <div id="container">
+            <p class="site-title">Bioinformatics Tutorials using Galaxy</p>
+            <div id="menu">
+                <ul id="nav">
+                <li><a href="../hisat2/rna-seq-hisat2.html">Differential RNA Expression - HiSAT2</a></li>
+                <li><a class="active" href="./rna-seq-star.html">Differential RNA Expression - STAR</a></li>
+                <li><a href="../assembly/assembly.html">Genomic Assembly</a></li>
+                </ul>
+            </div><br>
+       
+            <div class="tutorial">
+                <h2 id="step-no">1.</h2>
+                <div class="step-descrip"> 
+                    Making frequent use of the 'History' tab within Galaxy will enable you to accurately manage the workflow of whatever pipeline you are managing. To start off, we will first import the data necessary for this step. To do that, navigate to the following link: <a href="https://usegalaxy.org/u/niemasd/h/rna-seq-methods">https://usegalaxy.org/u/niemasd/h/rna-seq-methods</a> and click 'Import history'. Now let's name the imported history "Diff. RNA Expression w/ STAR".
+                </div>
+                <div class="step-img"> 
+                    <img src="./step1.png" width=150> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">2.</h2>
+                <div class="step-descrip"> 
+                    Given all of these reads, it is a good idea to first organize the data in a way that makes sense to you. For me, that involves rewriting the names of each fastq file to something more meaningful to me. To do this, click on each file name and then click on the pencil symbol to edit their attributes. While not necessary, as the tutorial proceeds we will be making a bunch of files in Galaxy's history and it will be useful to have clearly labeled files. My renamed files appear here.
+                </div>
+                <div class="step-img"> 
+                    <img src="./step2.png" width=150> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">3.</h2>
+                <div class="step-descrip"> 
+                    The first step is to align these reads to the human reference genome. For this example, we will make use of the hg19 reference genome. We will use STAR to align the reads. To make use of the tool, use the Search Tools box on the left hand panel to find STAR. Click on STAR to bring up the options for the tool.  Use the paired-end as a collection option and choose paired end reads. Finally, select the hg19 reference genome within the reference genome panel and hit execute. Do this for each collection of reads, and rename each file after STAR finishes running.
+                </div>
+                <div class="step-img"> 
+                    <img src="./step3.png" width=300> </img>
+                </div>
+            </div>
+
+
+            <div class="tutorial">
+                <h2 id="step-no">4.</h2>
+                <div class="step-descrip"> 
+                    
+                </div>
+                <div class="step-img"> 
+                    <img src="./step4.png" width=150> </img>
+                </div>
+            </div>
+        </div>
+    </body>

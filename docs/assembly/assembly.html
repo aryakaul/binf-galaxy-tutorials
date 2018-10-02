@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset"utf-8">
+        <title>Bioinformatics Education</title>
+        <meta name="description" content="Galaxy based lessons in Bioinformatics"> 
+	    <link rel="stylesheet" href="../styles.css"> 
+    </head>
+    
+    <body>
+        <header class="site-header">
+
+        <div id="container">
+            <p class="site-title">Bioinformatics Tutorials using Galaxy</p>
+            <div id="menu">
+                <ul id="nav">
+                <li><a href="../hisat2/rna-seq-hisat2.html">Differential RNA Expression - HiSAT2</a></li>
+                <li><a href="../star/rna-seq-star.html">Differential RNA Expression - STAR</a></li>
+                <li><a class="active" href="../assembly/assembly.html">Genomic Assembly</a></li>
+                </ul>
+            </div><br>
+       
+            <div class="tutorial">
+                <h2 id="step-no">1.</h2>
+                <div class="step-descrip"> 
+                    Making frequent use of the 'History' tab within Galaxy will enable you to accurately manage the workflow of whatever pipeline you are managing. To start off, we will first import the data necessary for this step. To do that, navigate to the following link: <a href="https://usegalaxy.org/u/niemasd/h/assembly">https://usegalaxy.org/u/niemasd/h/assembly</a> and click 'Import history'. Now let's name the imported history "Assembly Run"
+                </div>
+                <div class="step-img"> 
+                    <img src="./step1.png" width=150> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">2.</h2>
+                <div class="step-descrip"> 
+                    Let's organize these reads. To do this, select the button on the history with a checkbox. Then select "SRR292862_S2_L001_R2_001.fastq.gz" and "SRR292862_S2_L001_R1_001.fastq.gz". The R2 refers to the fact that this is the reverse read, and the R1 refers to a forward read. The three pairs of sequencing data correspond to sequencing runs with different insert sizes in each file. SRR292862 refers to an insert size of 6kb or 6,000 base pairs. Let's rename this to make it more clear. To do that, click on 'For all selected...' and select Build Dataset Pair. Ensure that the correct reads match to forward/reverse and rename the dataset to something like "6kbinsert-fqreads". Do this for each pair of datasets, note that SRR292862 = 6kb inserts, SRR292770 = 2kb inserts, and SRR292678sub = 470bp inserts. At the end, your history should look something like the photo on the right.
+                </div>
+                <div class="step-img"> 
+                    <img src="./step2.png" width=150> </img>
+                </div>
+            </div>
+            
+        
+            <div class="tutorial">
+                <h2 id="step-no">3.</h2>
+                <div class="step-descrip"> 
+                    Now we will run Unicycler to assemble these reads into contigs and scaffolds. Find the Unicycler tool by searching for it on the toolbar on the left. Select it, and use the Paired Collections generated in the previous step as the 'Short Reads'. The rest of the options can be left to their default settings. Hit Execute and wait for Unicycler to run for each collection of reads. NOTE: It might take a while for the jobs to begin running, this is normal!
+                </div>
+                <div class="step-img"> 
+                    <img src="./step3.png" width=300> </img>
+                </div>
+            </div>
+        </div>
+    </body>
