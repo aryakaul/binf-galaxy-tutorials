@@ -1,1 +1,164 @@
-hisat2/rna-seq-hisat2.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset"utf-8">
+        <title>Bioinformatics Education</title>
+        <meta name="description" content="Galaxy based lessons in Bioinformatics"> 
+	    <link rel="stylesheet" href="../styles.css"> 
+    </head>
+    
+    <body>
+        <header class="site-header">
+
+        <div id="container">
+            <p class="site-title">Bioinformatics Tutorials using Galaxy</p>
+            <div id="menu">
+                <ul id="nav">
+                <li><a class="active" href="./rna-seq-hisat2.html">Differential RNA Expression - HiSAT2</a></li>
+                <li><a href="../star/rna-seq-star.html">Differential RNA Expression - STAR</a></li>
+                <li><a href="../assembly/assembly.html">Genomic Assembly</a></li>
+                </ul>
+            </div><br>
+       
+            <div class="tutorial">
+                <h2 id="step-no">1.</h2>
+                <div class="step-descrip"> 
+                    Making frequent use of the 'History' tab within Galaxy will enable you to accurately manage the workflow of whatever pipeline you are managing. To start off, we will first import the data necessary for this step. To do that, navigate to the following link: <a href="https://usegalaxy.org/u/niemasd/h/rna-seq-methods">https://usegalaxy.org/u/niemasd/h/rna-seq-methods</a> and click 'Import history'. Now let's name the imported history "Diff. RNA Expression w/ HiSAT2".
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step1.png" width=150> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">2.</h2>
+                <div class="step-descrip"> 
+                    Given all of these reads, it is a good idea to first organize the data in a way that makes sense to you. For me, that involves rewriting the names of each fastq file to something more meaningful to me. To do this, click on each file name and then click on the pencil symbol to edit their attributes. While not necessary, as the tutorial proceeds we will be making a bunch of files in Galaxy's history and it will be useful to have clearly labeled files. My renamed files appear here.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step2.png" width=150> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">3.</h2>
+                <div class="step-descrip"> 
+                    The first step is to align these reads to the human reference genome. For this example, we will make use of the hg19 reference genome. We will first use HiSAT2 to align the reads. To make use of the tool, use the Search Tools box on the left hand panel to find HiSAT2. Click on HiSAT2 to bring up the options for the tool. Use the built in 'hg19 Canonical' reference genome and select the option for paired end reads. Select the forward and reverse reads for each file and replicate through this option. Next, click on Advanced Options, and 'Specify spliced alignment options.' Under the section of Transcriptome assembly reporting choose to "Report alignments tailored for transcript assemblers including StringTie." Then click 'execute'. Run this same step for each pair of paired-end reads.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step3a.png" width=300> </img>
+                    <img src="./hisat2/step3b.png" width=300> </img>
+                </div>
+                <div class="step-img"> 
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">4.</h2>
+                <div class="step-descrip"> 
+                    We are now going to organize the HiSAT2 results. The best way to do that in Galaxy is to make use of their own data structures. Specifically, a 'Dataset List.' The way to construct this is to navigate to the history, and clicking on the gray button with a checkbox near the top of the history. Then click on each of the two replicates from each sample and click on 'For all selected...' and then click on 'Build Dataset List.' Do this for each of the samples (UHRR1, UHRR2, BRAIN1, and BRAIN2).
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step4.png" width=150> </img>
+                </div>
+            </div> 
+
+            <div class="tutorial">
+                <h2 id="step-no">5.</h2>
+                <div class="step-descrip"> 
+                    The next step is to run StringTie to quantify the transcript levels after the mapped HiSAT2 results. To do this, navigate to the tool panel on the left and search "StringTie". Click on the first result and then change the 'Input mapped reads' to the Dataset collection option. Select whichever HiSAT2 alignments you would like to run and click execute without changing any other options. 
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step5.png" width=300> </img>
+                </div>
+            </div>
+        
+            <div class="tutorial">
+                <h2 id="step-no">6.</h2>
+                <div class="step-descrip"> 
+                    When each of the StringTie jobs have finished running, the next step is to create a unified transcriptome assembly. This is because each of the previous runs was conducted without a reference transcriptome. To do this, we will make use of StringTie merge; however, we first need to group each of the StringTie results together. To do this navigate to the tool panel and search for 'Merge Collections.' Click on the tool and add each of the StringTie results to merge into a single collection list of datasets. 
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step6.png" width=300> </img>
+                </div>
+            </div>
+        
+            <div class="tutorial">
+                <h2 id="step-no">7.</h2>
+                <div class="step-descrip"> 
+                    We now need to retreive a copy of the genome annotation file for the hg19 genome assembly. This will be used by StringTie merge as a reference annotation file to quantify the number of transcripts. To do this, navigate to <a href="http://genome.ucsc.edu/cgi-bin/hgTables?command=start">http://genome.ucsc.edu/cgi-bin/hgTables?command=start</a> and choose the hg19 assembly. Send the output to Galaxy.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step7.png" width=400> </img>
+                </div>
+            </div>
+        
+            <div class="tutorial">
+                <h2 id="step-no">8.</h2>
+                <div class="step-descrip"> 
+                   We are finally ready to run StringTie merge. To do this, navigate to the lefthand tools panel and search for StringTie merge. Click on the tool, and select the output of Step 6 in the Transcripts input. Select the outputted UCSC GTF file as the Reference annotation. Hit execute with the rest of the options untouched. Rename the output as Merged Transcriptome.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step8.png" width=400> </img>
+                </div>
+            </div>
+        
+            <div class="tutorial">
+                <h2 id="step-no">9.</h2>
+                <div class="step-descrip"> 
+                    To quantify the number of transcripts in each sample, we will make use of 'Feature Counts', another tool available in Galaxy. Select as the alignment file, a collection of the HiSAT2 alignments. The Gene Annotation File should be the Merged Transcriptome (output of StringTie merge). Additionally, click on 'Options for paired-end reads.' For the option of 'Count fragments instead of reads,' change the value to 'Enabled, fragments (or templates) will be counted.' Execute this command. You will need to do this for each of the 4 alignment collections.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step9.png" width=400> </img>
+                </div>
+            </div>
+        
+            <div class="tutorial">
+                <h2 id="step-no">10.</h2>
+                <div class="step-descrip"> 
+                    The final step is to run DEseq2 to quantify the differential expression between the UHRR data and the Brain data. To do this, select the DEseq2 tool and input 4 factor levels. For each factor level label it from the set of samples (UHRR1, UHRR2, Brain1, and Brain2) and for each designate the appropriate featureCounts file. Label the resultant files with the HiSAT2/StringTie pipeline used to generate them.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step10.png" width=400> </img>
+                </div>
+            </div>
+
+            <div class="tutorial">
+                <h2 id="step-no">11.</h2>
+                <div class="step-descrip"> 
+                    Now download and inspect the results from the plot file. Spend some time thinking about the heatmap on the 2nd page, then proceed to Step 12.
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step11.png" width=200> </img>
+                </div>
+            </div>
+          
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="tutorial" >
+                <h2 id="step-no">12.</h2>
+                <div class="step-descrip"> 
+                    What do the colors of the various boxes represent? Why is the diagonal always 0? What can be said about the 'distance' between the UHRR samples (Universal Human RNA) and the Brain samples? Why is the distance less replicates? What can be concluded about the mRNA content of brain tissue versus other human tissue? What are future experiments that can be done? What would you focus on next?
+                </div>
+                <div class="step-img"> 
+                    <img src="./hisat2/step12.png" width=200> </img>
+                </div>
+            </div>
+        </div>
+    </body>
