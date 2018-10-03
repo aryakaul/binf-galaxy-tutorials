@@ -50,16 +50,103 @@
                 </div>
             </div>
 
-            <!--
             <div class="tutorial">
                 <h2 id="step-no">4.</h2>
                 <div class="step-descrip"> 
-                    
+                    The next step is to use StringTie to assemble the alignments into potential transcripts. To do this, search for StringTie on the lefthand panel and select the tool. Next, change the input to a dataset collection and select one of the created BAM files. Hit execute. Repeat this process for each of the BAM files generated from Step 3.
                 </div>
                 <div class="step-img"> 
+                    <img src="./step4.png" width=300> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">5.</h2>
+                <div class="step-descrip"> 
+                    After renaming the outputted files to something more descriptive, we have to generate a unified transcriptome assembly. Before we can do that step, we must merge all of the disparate assemblies into one dataset. To do that, navigate to the tool panel and search for 'Merge Collections.' Click on the tool and add each of the StringTie results to merge into a single collection list of datasets. 
+                </div>
+                <div class="step-img"> 
+                    <img src="./step5.png" width=300> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">6.</h2>
+                <div class="step-descrip"> 
+                     We now need to retreive a copy of the genome annotation file for the hg19 genome assembly. This will be used by StringTie merge as a reference annotation file to quantify the number of transcripts. To do this, navigate to <a href="http://genome.ucsc.edu/cgi-bin/hgTables?command=start" target="_blank">http://genome.ucsc.edu/cgi-bin/hgTables?command=start</a> and choose the hg19 assembly. Send the output to Galaxy. 
+                </div>
+                <div class="step-img"> 
+                    <img src="./step6.png" width=300> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">7.</h2>
+                <div class="step-descrip"> 
+                     We are finally ready to run StringTie merge. To do this, navigate to the lefthand tools panel and search for StringTie merge. Click on the tool, and select the output of Step 5 in the Transcripts input. Select the outputted UCSC GTF file as the Reference annotation. Hit execute with the rest of the options untouched. Rename the output as Merged Transcriptome.  
+                </div>
+                <div class="step-img"> 
+                    <img src="./step7.png" width=300> </img>
                 </div>
             </div>
 
-             -->
+            <div class="tutorial">
+                <h2 id="step-no">8.</h2>
+                <div class="step-descrip"> 
+                     To quantify the number of transcripts in each sample, we will make use of 'Feature Counts', another tool available in Galaxy. Select as the alignment file, a collection of the STAR alignments. The Gene Annotation File should be the Merged Transcriptome (output of StringTie merge). Additionally, click on 'Options for paired-end reads.' For the option of 'Count fragments instead of reads,' change the value to 'Enabled, fragments (or templates) will be counted.' Execute this command. You will need to do this for each of the 4 alignment collections. 
+                </div>
+                <div class="step-img"> 
+                    <img src="./step8.png" width=300> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">9.</h2>
+                <div class="step-descrip"> 
+                    The final step is to run DEseq2 to quantify the differential expression between the UHRR data and the Brain data. To do this, select the DEseq2 tool and input 4 factor levels. For each factor level label it from the set of samples (UHRR1, UHRR2, Brain1, and Brain2) and for each designate the appropriate featureCounts file. Additionally, select "Yes" for the options "Output Normalized Counts Table" and "Output all levels vs all levels of primary factor (use when you have >2 levels for primary factor)." Label the resultant files with the STAR pipeline used to generate them.                   
+                </div>
+                <div class="step-img"> 
+                    <img src="./step9.png" width=300> </img>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">10.</h2>
+                <div class="step-descrip"> 
+                    Now download and inspect the results from the plot file. Spend some time thinking about the heatmap on the 2nd page, then proceed to Step 11.
+                </div>
+                <div class="step-img"> 
+                    <img src="./step10.png" width=150> </img>
+                </div>
+            </div>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+            <div class="tutorial">
+                <h2 id="step-no">11.</h2>
+                <div class="step-descrip"> 
+                    Compare this heatmap to the heatmap produced from the HiSAT2 pipeline. What does this comparison tell you about the differences between STAR/HiSAT2? Go back to the log files produced by both alignment runs, what are the significant differences? Why do you think people use one tool over the other?
+                </div>
+                <div class="step-img"> 
+                    <img src="./step11.png" width=300> </img>
+                </div>
+            </div>
         </div>
     </body>
