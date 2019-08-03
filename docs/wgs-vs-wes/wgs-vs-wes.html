@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset"utf-8">
+        <title>Bioinformatics Education</title>
+        <meta name="description" content="Galaxy based lessons in Bioinformatics"> 
+	    <link rel="stylesheet" href="../styles.css"> 
+    </head>
+    
+    <body>
+        <header class="site-header">
+
+        <div id="container">
+            <p class="site-title">Bioinformatics Tutorials using Galaxy</p>
+            <div id="menu">
+                <ul id="nav">
+                <li><a href="../index.html">Differential RNA Expression - HiSAT2</a></li>
+                <li><a href="../star/rna-seq-star.html">Differential RNA Expression - STAR</a></li>
+                <li><a href="../assembly/assembly.html">Genomic Assembly</a></li>
+                <li><a href="../trio/trio.html">Learning from a Trio</a></li>
+                <li><a class="active" href="./wgs-vs-wes.html">WGS vs WES</a></li>
+                </ul>
+            </div><br>
+       
+            <div class="tutorial">
+                <h2 id="step-no">1.</h2>
+                <div class="step-descrip"> 
+                    We will start by importing the pre-aligned reads into a new history. To do so, please navigate to the <a href="https://usegalaxy.org/library/list#folders/Ff6ffafeefb4a7078" target="_blank">following link</a> and select all datasets to 'Export to History' as datasets.<pre><a href="./step1.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">2.</h2>
+                <div class="step-descrip"> 
+                    Now, we will call variants on each of these bam files using FreeBayes. Navigate to the left toolbar and search and select for FreeBayes. Select 'Merge output VCFs' and shift-click to select all bam files corresponding to WGS or WES runs. Set the reference genome as hg38, and in the parameter selection level choose '2. Simple diploid calling with filtering and coverage'. Set 10 as the mic voerage to 'process a site'. Run and repeat for WGS and WES runs.
+                <pre><a href="./step2.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">3.</h2>
+                <div class="step-descrip"> 
+                    Now we will use the tool VCF-VCFintersect to compare the two outputs. Find the tool by searching the left toolbar for 'VCF-VCFintersect' and selecting the matching option. Set the first VCF dataset as the FreeBayes output from WES, the second VCF dataset as the FreeBayes output from WGS, and the reference genome as hg38. Leave the rest of the options as their default values and hit 'Execute'.<pre><a href="./step3.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">Questions!</h2>
+                <div class="step-descrip"> 
+                    <ol>
+                        <li> What is the difference between Whole Exome Sequencing and Whole Genome Sequencing? Why would one ever choose WES over WGS?
+                        <li> How many variants are shared between the WGS and WES runs?
+                        <li> More questions here!
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </body>

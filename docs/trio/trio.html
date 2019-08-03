@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset"utf-8">
+        <title>Bioinformatics Education</title>
+        <meta name="description" content="Galaxy based lessons in Bioinformatics"> 
+	    <link rel="stylesheet" href="../styles.css"> 
+    </head>
+    
+    <body>
+        <header class="site-header">
+
+        <div id="container">
+            <p class="site-title">Bioinformatics Tutorials using Galaxy</p>
+            <div id="menu">
+                <ul id="nav">
+                <li><a href="../index.html">Differential RNA Expression - HiSAT2</a></li>
+                <li><a href="../star/rna-seq-star.html">Differential RNA Expression - STAR</a></li>
+                <li><a href="../assembly/assembly.html">Genomic Assembly</a></li>
+                <li><a class="active" href="./trio.html">Learning from a Trio</a></li>
+                <li><a href="../wgs-vs-wes/wgs-vs-wes.html">WGS vs WES</a></li>
+                </ul>
+            </div><br>
+            <div class="tutorial">
+                <h2 id="step-no">1.</h2>
+                <div class="step-descrip"> 
+                    This tutorial will walk you through how to perform variant calling on a family of individuals on Galaxy's platform. To start with we will make use of pre-aligned BAM reads from the father, mother, and son. Find these in the following data library <a href="https://usegalaxy.org/library/list#folders/F9f3fbba1523e2e6d" target="_blank">found here</a>. Select all of these files and click on 'Export to History' as datasets. Create a new history to send the files to. <pre><a href="./step1.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+
+            <div class="tutorial">
+                <h2 id="step-no">2.</h2>
+                <div class="step-descrip"> 
+                    Now rename these files to their corresponding individuals. NA12877 corresponds to the son, NA12890 corresponds to the mother, and NA12889 corresponds to the father. Select all the bam files corresponding to a certain individual and select build dataset list. Name them something corresponding to the individual it came from and select 'Hide Original Elements' to tidy up the history. Click 'Create List'.<pre><a href="./step2.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+
+            <div class="tutorial">
+                <h2 id="step-no">3.</h2>
+                <div class="step-descrip"> 
+                    We will now generate a VCF file containing variants for each individual in this family using the tool 'FreeBayes'. To use this tool, navigate to the left tool bar and search for it. Click on it and change the following options: 1. Set 'Merge Output VCFs' 2. Use one of the BAM dataset collections created in Step 2 3. Set hg38 as the reference genome 4. Choose Simple diploid calling with filtering and coverage and require at least 10 reads to cover to process a given site. Execute this job and repeat for each BAM collection. You should end up with 3 VCFs.<pre><a href="./step3.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+            
+            <div class="tutorial">
+                <h2 id="step-no">4.</h2>
+                <div class="step-descrip"> 
+                    We will now compare the VCFs from each individual. To do this, we will make use of the "VCF-VCFintersect" tool available through Galaxy. Select each possible pairwise combination of the VCFs and choose hg38 as the reference genome and run each. Leave the rest of the options unchanged. <pre><a href="./step4.png" target="_blank">See image hint</a></pre>
+                </div>
+            </div>
+           
+            <!--
+            <div class="tutorial">
+                <h2 id="step-no">5.</h2>
+                <div class="step-descrip"> 
+                    Now consider the outputs of the VCF-VCFIntersect tool. How many variants does the son share between the mother and father? How come the mother and father share so few variants? If the son presented with a genetic disease how would you use this data to identify the disease-causing variant?
+                </div>
+            </div>
+            -->
+            <div class="tutorial">
+                <h2 id="step-no">Questions!</h2>
+                <div class="step-descrip"> 
+                    <ol>
+                        <li> How many variants does the son share between the mother and father?
+                        <li> How come the mother and father share so few variants?
+                        <li> If the son presented with a genetic disease how would you use this data to identify the disease-causing variant?
+                        <li> More questions here!
+                    </ol>
+                </div>
+            </div>
+    <body>
+</html>
